@@ -7,29 +7,28 @@
 <meta name="description" content="Challenge yourself with the Gensyn Quiz! Learn about RL Swarm nodes, blockchain AI compute, and test your knowledge to become a Gensyn Pioneer.">
 <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-900 min-h-screen flex items-center justify-center p-4 text-white">
+<body class="bg-gray-900 flex items-center justify-center min-h-screen p-4 text-white">
 
-<div class="bg-gray-800 rounded-2xl shadow-xl max-w-xl w-full p-8">
+<div class="bg-gray-800 rounded-3xl shadow-2xl max-w-3xl w-full p-6 sm:p-10">
 
   <!-- Start Page -->
-  <div id="start-page" class="text-center flex flex-col items-center justify-center min-h-[400px] space-y-6 bg-gradient-to-r from-[#00f5a0] via-[#00d9f5] to-[#00f5a0] p-8 rounded-2xl shadow-2xl">
-    <h1 class="text-5xl font-extrabold text-white tracking-tight">💎 GENSYN AI QUIZ</h1>
-    <p class="text-white text-lg max-w-md">
-      Test your knowledge about Gensyn and RL Swarm nodes.<br>
-      Complete the quiz and discover your score!
+  <div id="start-page" class="text-center flex flex-col items-center justify-center min-h-[500px] space-y-6 rounded-3xl shadow-inner bg-gradient-to-br from-[#0D1117] via-[#0D1C2A] to-[#1A2A3B] p-8">
+    <h1 class="text-5xl sm:text-6xl font-extrabold text-white tracking-tight">💎 GENSYN AI QUIZ</h1>
+    <p class="text-white text-lg sm:text-xl max-w-2xl mx-auto">
+      Challenge yourself with the Gensyn Quiz! Learn about RL Swarm nodes, blockchain AI compute, and test your knowledge to become a Gensyn Pioneer.
     </p>
-    <button id="start-btn" class="bg-white text-[#0c0f1b] font-bold py-4 px-12 rounded-3xl text-xl shadow-lg hover:scale-105 transform transition duration-300">
+    <button id="start-btn" class="bg-indigo-600 text-white font-bold py-4 px-12 rounded-3xl text-xl shadow-lg hover:scale-105 transform transition duration-300 hover:bg-indigo-500">
       Start Quiz 🚀
     </button>
   </div>
 
   <!-- Quiz Page -->
   <div id="quiz-page" class="hidden">
-    <h2 id="question-counter" class="text-2xl font-bold mb-6"></h2>
-    <p id="question-text" class="mb-6 text-lg"></p>
-    <div id="options" class="grid gap-4"></div>
+    <h2 id="question-counter" class="text-2xl font-bold mb-6 text-center"></h2>
+    <p id="question-text" class="mb-6 text-lg text-center sm:text-left"></p>
+    <div id="options" class="grid gap-4 sm:grid-cols-1 md:grid-cols-1"></div>
     <div class="flex justify-center mt-6">
-      <button id="next-btn" class="bg-indigo-600 hover:bg-indigo-500 py-3 px-6 rounded-xl font-bold transition-colors duration-200">
+      <button id="next-btn" class="bg-indigo-600 hover:bg-indigo-500 py-3 px-6 rounded-xl font-bold shadow-lg transition duration-300">
         Next
       </button>
     </div>
@@ -40,16 +39,16 @@
     <h2 class="text-3xl font-bold mb-4">Quiz Completed!</h2>
     <p id="score-text" class="text-xl mb-6"></p>
     <div class="flex flex-col gap-4 items-center">
-      <button id="restart-btn" class="bg-indigo-600 hover:bg-indigo-500 py-3 px-6 rounded-xl font-bold transition-colors duration-200">
+      <button id="restart-btn" class="bg-indigo-600 hover:bg-indigo-500 py-3 px-6 rounded-xl font-bold shadow-lg transition duration-300">
         Restart Quiz
       </button>
-      <button id="show-answers-btn" class="bg-yellow-600 hover:bg-yellow-500 py-3 px-6 rounded-xl font-bold transition-colors duration-200">
+      <button id="show-answers-btn" class="bg-yellow-600 hover:bg-yellow-500 py-3 px-6 rounded-xl font-bold shadow-lg transition duration-300">
         Show All Answers
       </button>
-      <a href="https://www.gensyn.ai/" target="_blank" class="bg-green-600 hover:bg-green-500 py-3 px-6 rounded-xl font-bold transition-colors duration-200">
+      <a href="https://www.gensyn.ai/" target="_blank" class="bg-green-600 hover:bg-green-500 py-3 px-6 rounded-xl font-bold shadow-lg transition duration-300">
         Learn More About Gensyn
       </a>
-      <a href="https://github.com/gensyn-ai/rl-swarm" target="_blank" class="bg-purple-600 hover:bg-purple-500 py-3 px-6 rounded-xl font-bold transition-colors duration-200">
+      <a href="https://github.com/gensyn-ai/rl-swarm" target="_blank" class="bg-purple-600 hover:bg-purple-500 py-3 px-6 rounded-xl font-bold shadow-lg transition duration-300">
         Run Your Gensyn Node
       </a>
     </div>
@@ -60,13 +59,13 @@
     <h2 class="text-3xl font-bold mb-6 text-center">All Answers</h2>
     <div id="all-answers" class="space-y-4"></div>
     <div class="flex flex-col gap-4 items-center mt-6">
-      <button id="restart-btn2" class="bg-indigo-600 hover:bg-indigo-500 py-3 px-6 rounded-xl font-bold transition-colors duration-200">
+      <button id="restart-btn2" class="bg-indigo-600 hover:bg-indigo-500 py-3 px-6 rounded-xl font-bold shadow-lg transition duration-300">
         Restart Quiz
       </button>
-      <a href="https://www.gensyn.ai/" target="_blank" class="bg-green-600 hover:bg-green-500 py-3 px-6 rounded-xl font-bold transition-colors duration-200">
+      <a href="https://www.gensyn.ai/" target="_blank" class="bg-green-600 hover:bg-green-500 py-3 px-6 rounded-xl font-bold shadow-lg transition duration-300">
         Learn More About Gensyn
       </a>
-      <a href="https://github.com/gensyn-ai/rl-swarm" target="_blank" class="bg-purple-600 hover:bg-purple-500 py-3 px-6 rounded-xl font-bold transition-colors duration-200">
+      <a href="https://github.com/gensyn-ai/rl-swarm" target="_blank" class="bg-purple-600 hover:bg-purple-500 py-3 px-6 rounded-xl font-bold shadow-lg transition duration-300">
         Run Your Gensyn Node
       </a>
     </div>
@@ -135,7 +134,7 @@ function loadQuestion(){
   quizData[currentIndex].options.forEach(opt => {
     const btn = document.createElement('button');
     btn.textContent = opt;
-    btn.className = "bg-gray-700 hover:bg-gray-600 py-3 rounded-lg font-semibold transition-colors duration-200 w-full";
+    btn.className = "bg-gray-700 hover:bg-gray-600 py-3 rounded-lg font-semibold transition-colors duration-200 w-full shadow-md text-left px-4";
     btn.onclick = () => {
       selectedOption = opt;
       Array.from(optionsDiv.children).forEach(c => c.classList.remove('bg-blue-600','hover:bg-blue-500','text-white','font-bold'));
@@ -157,7 +156,7 @@ function showAllAnswers(){
   allAnswersDiv.innerHTML = '';
   quizData.forEach((q,i)=>{
     const div = document.createElement('div');
-    div.className = "p-4 bg-gray-700 rounded-lg";
+    div.className = "p-4 bg-gray-700 rounded-lg shadow-md";
     div.innerHTML = `<p class="font-semibold">Q${i+1}: ${q.question}</p>
                      <p class="mt-1 text-green-400">Answer: ${q.answer}</p>`;
     allAnswersDiv.appendChild(div);
@@ -173,6 +172,5 @@ function restartQuiz(){
   score = 0;
 }
 </script>
-
 </body>
 </html>
