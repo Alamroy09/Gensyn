@@ -46,6 +46,10 @@
         <a href="https://www.gensyn.ai/" target="_blank" class="bg-green-600 hover:bg-green-500 py-3 px-6 rounded-xl font-bold transition-colors duration-200">
           Join Gensyn Pioneer Program
         </a>
+        <!-- New Node Guide Button -->
+        <a href="https://github.com/gensyn-ai/rl-swarm" target="_blank" class="bg-purple-600 hover:bg-purple-500 py-3 px-6 rounded-xl font-bold transition-colors duration-200">
+          Run Your Gensyn Node
+        </a>
       </div>
     </div>
 
@@ -59,6 +63,10 @@
         </button>
         <a href="https://www.gensyn.ai/" target="_blank" class="bg-green-600 hover:bg-green-500 py-3 px-6 rounded-xl font-bold transition-colors duration-200">
           Join Gensyn Pioneer Program
+        </a>
+        <!-- New Node Guide Button -->
+        <a href="https://github.com/gensyn-ai/rl-swarm" target="_blank" class="bg-purple-600 hover:bg-purple-500 py-3 px-6 rounded-xl font-bold transition-colors duration-200">
+          Run Your Gensyn Node
         </a>
       </div>
     </div>
@@ -119,48 +127,4 @@
         btn.onclick = () => {
           selectedOption = option;
           Array.from(optionsDiv.children).forEach(child => child.classList.remove('bg-blue-600','hover:bg-blue-500'));
-          btn.classList.add('bg-blue-600','hover:bg-blue-500');
-        };
-        optionsDiv.appendChild(btn);
-      });
-    }
-
-    function nextQuestion() {
-      if (!selectedOption) return;
-      if (selectedOption === quizData[currentIndex].answer) score++;
-      currentIndex++;
-      if (currentIndex < quizData.length) {
-        loadQuestion();
-      } else {
-        showScorePage();
-      }
-    }
-
-    function showScorePage() {
-      quizPage.classList.add('hidden');
-      scorePage.classList.remove('hidden');
-      scoreText.textContent = `Your Score: ${score} / ${quizData.length}`;
-    }
-
-    function showAllAnswers() {
-      scorePage.classList.add('hidden');
-      answersPage.classList.remove('hidden');
-      allAnswersDiv.innerHTML = '';
-      quizData.forEach((q, idx) => {
-        const div = document.createElement('div');
-        div.className = "p-4 bg-gray-700 rounded-lg";
-        div.innerHTML = `<p class="font-semibold">Q${idx+1}: ${q.question}</p>
-                         <p class="mt-1 text-green-400">Answer: ${q.answer}</p>`;
-        allAnswersDiv.appendChild(div);
-      });
-    }
-
-    function restartQuiz() {
-      startPage.classList.remove('hidden');
-      quizPage.classList.add('hidden');
-      scorePage.classList.add('hidden');
-      answersPage.classList.add('hidden');
-    }
-  </script>
-</body>
-</html>
+          btn.classList.add('bg-blue-600','hover:bg-blue-500
