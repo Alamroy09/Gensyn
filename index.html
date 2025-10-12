@@ -1,174 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gensyn Pioneer Program Quiz</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: linear-gradient(135deg, #0a0a0a 0%, #111827 100%);
+      color: #eaeaea;
+      font-family: 'Inter', sans-serif;
+    }
+    .gradient-text {
+      background: linear-gradient(90deg, #00f5a0, #00d9f5);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .fade-in {
+      animation: fadeIn 1s ease-in-out forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .glow-btn:hover {
+      box-shadow: 0 0 20px rgba(0, 217, 245, 0.5);
+      transform: scale(1.05);
+      transition: 0.3s ease;
+    }
+  </style>
 </head>
-<body class="bg-gray-900 min-h-screen flex items-center justify-center p-4 text-white">
-  <div class="bg-gray-800 rounded-2xl shadow-xl max-w-xl w-full p-8" id="quiz-container">
+<body class="flex items-center justify-center min-h-screen px-4">
 
-    <!-- Start Page -->
-    <div id="start-page" class="text-center">
-      <h1 class="text-3xl font-bold mb-4">💎 Gensyn Pioneer Program Quiz</h1>
-      <p class="mb-6 text-lg">
-        Test your knowledge about Gensyn and RL Swarm nodes.<br>
-        Complete the quiz and discover your Pioneer score.
-      </p>
-      <button id="start-btn" class="bg-indigo-600 hover:bg-indigo-500 py-3 px-6 rounded-xl font-bold transition-colors duration-200">
-        Start Quiz 🚀
-      </button>
+  <div id="start-page" class="text-center fade-in">
+    <img src="https://www.gensyn.ai/assets/images/logo-light.svg" alt="Gensyn Logo" class="mx-auto mb-6 w-24">
+    <h1 class="text-3xl md:text-4xl font-extrabold gradient-text mb-4">Gensyn Pioneer Program Quiz</h1>
+    <p class="text-gray-400 mb-8">Test your knowledge about <span class="text-[#00f5a0]">Gensyn</span> and RL Swarm Nodes!<br>Click below to begin your journey 🚀</p>
+    <button id="start-btn" class="bg-[#00f5a0] text-black font-bold py-3 px-8 rounded-xl glow-btn transition-all">Start Quiz</button>
+  </div>
+
+  <div id="quiz-page" class="hidden w-full max-w-2xl bg-[#111827] p-8 rounded-2xl shadow-2xl text-center fade-in">
+    <h2 id="question-counter" class="text-xl font-semibold mb-4"></h2>
+    <p id="question-text" class="mb-6 text-lg"></p>
+    <div id="options" class="grid gap-4"></div>
+    <div class="flex justify-center mt-6">
+      <button id="next-btn" class="bg-[#00d9f5] text-black font-bold py-3 px-6 rounded-xl glow-btn transition-all">Next</button>
     </div>
+  </div>
 
-    <!-- Quiz Page -->
-    <div id="quiz-page" class="hidden">
-      <h2 id="question-counter" class="text-2xl font-bold mb-6"></h2>
-      <p id="question-text" class="mb-6 text-lg"></p>
-      <div id="options" class="grid gap-4"></div>
-
-      <!-- Next button centered -->
-      <div class="flex justify-center mt-6">
-        <button id="next-btn" class="bg-indigo-600 hover:bg-indigo-500 py-3 px-6 rounded-xl font-bold transition-colors duration-200">
-          Next
-        </button>
-      </div>
+  <div id="score-page" class="hidden text-center fade-in">
+    <h2 class="text-3xl font-bold mb-6 gradient-text">Quiz Completed!</h2>
+    <p id="score-text" class="mb-6 text-xl"></p>
+    <div class="flex flex-col gap-4 justify-center items-center">
+      <button id="restart-btn" class="bg-[#00f5a0] text-black py-3 px-6 rounded-xl font-bold glow-btn">Restart Quiz</button>
+      <button id="show-answers-btn" class="bg-yellow-400 text-black py-3 px-6 rounded-xl font-bold glow-btn">Show All Answers</button>
+      <a href="https://github.com/gensyn-ai/rl-swarm" target="_blank" class="bg-[#00d9f5] text-black py-3 px-6 rounded-xl font-bold glow-btn">Run Your Gensyn Node</a>
     </div>
+  </div>
 
-    <!-- Score Page -->
-    <div id="score-page" class="hidden text-center">
-      <h2 class="text-3xl font-bold mb-4">Quiz Completed!</h2>
-      <p id="score-text" class="text-xl mb-6"></p>
-      <div class="flex flex-col gap-4 items-center">
-        <button id="restart-btn" class="bg-indigo-600 hover:bg-indigo-500 py-3 px-6 rounded-xl font-bold transition-colors duration-200">
-          Restart Quiz
-        </button>
-        <button id="show-answers-btn" class="bg-yellow-600 hover:bg-yellow-500 py-3 px-6 rounded-xl font-bold transition-colors duration-200">
-          Show All Answers
-        </button>
-        <a href="https://www.gensyn.ai/" target="_blank" class="bg-green-600 hover:bg-green-500 py-3 px-6 rounded-xl font-bold transition-colors duration-200">
-          Join Gensyn Pioneer Program
-        </a>
-        <a href="https://github.com/gensyn-ai/rl-swarm" target="_blank" class="bg-purple-600 hover:bg-purple-500 py-3 px-6 rounded-xl font-bold transition-colors duration-200">
-          Run Your Gensyn Node
-        </a>
-      </div>
+  <div id="answers-page" class="hidden w-full max-w-2xl bg-[#111827] p-8 rounded-2xl shadow-2xl fade-in">
+    <h2 class="text-2xl font-bold mb-6 gradient-text text-center">All Answers</h2>
+    <div id="answers-list" class="text-left space-y-4"></div>
+    <div class="flex flex-col gap-4 justify-center items-center mt-8">
+      <button id="restart-btn2" class="bg-[#00f5a0] text-black py-3 px-6 rounded-xl font-bold glow-btn">Restart Quiz</button>
+      <a href="https://github.com/gensyn-ai/rl-swarm" target="_blank" class="bg-[#00d9f5] text-black py-3 px-6 rounded-xl font-bold glow-btn">Run Your Gensyn Node</a>
     </div>
-
-    <!-- All Answers Page -->
-    <div id="answers-page" class="hidden">
-      <h2 class="text-3xl font-bold mb-6 text-center">All Answers</h2>
-      <div id="all-answers" class="space-y-4"></div>
-      <div class="flex flex-col gap-4 items-center mt-6">
-        <button id="restart-btn2" class="bg-indigo-600 hover:bg-indigo-500 py-3 px-6 rounded-xl font-bold transition-colors duration-200">
-          Restart Quiz
-        </button>
-        <a href="https://www.gensyn.ai/" target="_blank" class="bg-green-600 hover:bg-green-500 py-3 px-6 rounded-xl font-bold transition-colors duration-200">
-          Join Gensyn Pioneer Program
-        </a>
-        <a href="https://github.com/gensyn-ai/rl-swarm" target="_blank" class="bg-purple-600 hover:bg-purple-500 py-3 px-6 rounded-xl font-bold transition-colors duration-200">
-          Run Your Gensyn Node
-        </a>
-      </div>
-    </div>
-
   </div>
 
   <script>
     const quizData = [
-      { question: "What is Gensyn?", options: ["Cloud service", "Blockchain-based AI compute protocol", "AI lab", "Data analytics tool"], answer: "Blockchain-based AI compute protocol" },
-      { question: "What is RL Swarm in Gensyn?", options: ["Multiplayer game", "Distributed learning framework", "Social media", "Database system"], answer: "Distributed learning framework" },
-      { question: "Main goal of Gensyn?", options: ["Social network", "Affordable AI training compute using idle hardware", "Cloud AI research", "Sell AI licenses"], answer: "Affordable AI training compute using idle hardware" },
-      { question: "Funding raised?", options: ["$10M", "$25.5M", "$50.6M", "$100M"], answer: "$50.6M" },
-      { question: "Number of roles in Pioneer Program?", options: ["1", "2", "3", "4"], answer: "3" },
-      { question: "Which is NOT a Pioneer Program role?", options: ["Rover","Navigator","Pioneer","Developer"], answer: "Developer" },
-      { question: "Rover role represents?", options: ["Builder","Consistent contributor","Leader","Technical reviewer"], answer: "Consistent contributor" },
-      { question: "Navigator role represents?", options: ["Creates content","Moderates Discord","Passive observer","Runs servers"], answer: "Creates content" },
-      { question: "Pioneer role represents?", options: ["Maintains servers","Active contributor","Spreads culture","Tests AI models"], answer: "Spreads culture" },
-      { question: "Hardware recommended for Gensyn node?", options: ["CPU","GPU","Mobile","Laptop"], answer: "GPU" },
-      { question: "OS recommended for Gensyn nodes?", options: ["Windows","Linux","macOS","Android"], answer: "Linux" },
-      { question: "Command to start RL Swarm node?", options: ["./run_rl_swarm.sh","python3 run.py","npm start","docker-compose up"], answer: "./run_rl_swarm.sh" },
-      { question: "Network protocol for RL Swarm nodes?", options: ["TCP/IP","HTTP/HTTPS","Peer-to-Peer","FTP"], answer: "Peer-to-Peer" },
-      { question: "AI model used in RL Swarm?", options: ["GPT-3","BERT","Qwen2.5-0.5B-Instruct","ResNet"], answer: "Qwen2.5-0.5B-Instruct" },
-      { question: "Contribution form submission frequency?", options: ["Weekly","Every 2 weeks","Monthly","Daily"], answer: "Every 2 weeks" },
+      { question: "What is Gensyn?", options: ["A cloud service for AI model training","A blockchain-based decentralized AI compute protocol","An AI research lab","A data analytics tool"], answer: "A blockchain-based decentralized AI compute protocol" },
+      { question: "What is RL Swarm in Gensyn?", options: ["A multiplayer game","A distributed learning framework","A social media platform","A database system"], answer: "A distributed learning framework" },
+      { question: "What is the main goal of Gensyn?", options: ["To create a social network for AI enthusiasts","To provide affordable AI training compute using idle hardware","To build a cloud AI research platform","To sell AI software licenses"], answer: "To provide affordable AI training compute using idle hardware" },
+      { question: "How much funding has Gensyn raised?", options: ["$10M","$25.5M","$50.6M","$100M"], answer: "$50.6M" },
+      { question: "How many roles are there in the Gensyn Pioneer Program?", options: ["1","2","3","4"], answer: "3" },
+      { question: "Which of the following is NOT a Pioneer Program role?", options: ["Rover","Navigator","Pioneer","Developer"], answer: "Developer" },
+      { question: "What does the Rover role represent?", options: ["A builder creating tools for the community","A consistent contributor active in the community","A leader spreading Gensyn culture","A technical reviewer"], answer: "A consistent contributor active in the community" },
+      { question: "What does the Navigator role represent?", options: ["Creates meaningful tools or content for the community","Only moderates Discord","Passive observer","Runs servers"], answer: "Creates meaningful tools or content for the community" },
+      { question: "What does the Pioneer role represent?", options: ["Maintains servers","Active contributor in discussions","Spreads Gensyn culture and inspires others","Tests AI models only"], answer: "Spreads Gensyn culture and inspires others" },
+      { question: "What kind of hardware is recommended to run a Gensyn node?", options: ["CPU-based server","GPU-based server","Mobile device","Only laptop"], answer: "GPU-based server" },
+      { question: "What operating system is recommended for running Gensyn nodes?", options: ["Windows","Linux","macOS","Android"], answer: "Linux" },
+      { question: "Which command is used to start a Gensyn RL Swarm node?", options: ["./run_rl_swarm.sh","python3 run.py","npm start","docker-compose up"], answer: "./run_rl_swarm.sh" },
+      { question: "What network protocol is used by RL Swarm nodes?", options: ["TCP/IP","HTTP/HTTPS","Peer-to-Peer (P2P)","FTP"], answer: "Peer-to-Peer (P2P)" },
+      { question: "Which AI model is currently used in Gensyn RL Swarm?", options: ["GPT-3","BERT","Qwen2.5-0.5B-Instruct","ResNet"], answer: "Qwen2.5-0.5B-Instruct" },
+      { question: "How often do participants need to submit the Pioneer Program contribution form?", options: ["Every week","Every 2 weeks","Every month","Every day"], answer: "Every 2 weeks" },
     ];
 
-    let currentIndex=0, score=0, selectedOption=null;
+    const startPage = document.getElementById("start-page");
+    const quizPage = document.getElementById("quiz-page");
+    const scorePage = document.getElementById("score-page");
+    const answersPage = document.getElementById("answers-page");
 
-    const startPage = document.getElementById('start-page');
-    const quizPage = document.getElementById('quiz-page');
-    const scorePage = document.getElementById('score-page');
-    const answersPage = document.getElementById('answers-page');
-    const questionCounter = document.getElementById('question-counter');
-    const questionText = document.getElementById('question-text');
-    const optionsDiv = document.getElementById('options');
-    const scoreText = document.getElementById('score-text');
-    const allAnswersDiv = document.getElementById('all-answers');
+    const startBtn = document.getElementById("start-btn");
+    const nextBtn = document.getElementById("next-btn");
+    const restartBtn = document.getElementById("restart-btn");
+    const restartBtn2 = document.getElementById("restart-btn2");
+    const showAnswersBtn = document.getElementById("show-answers-btn");
 
-    document.getElementById('start-btn').addEventListener('click', startQuiz);
-    document.getElementById('next-btn').addEventListener('click', nextQuestion);
-    document.getElementById('restart-btn').addEventListener('click', restartQuiz);
-    document.getElementById('restart-btn2').addEventListener('click', restartQuiz);
-    document.getElementById('show-answers-btn').addEventListener('click', showAllAnswers);
+    const questionText = document.getElementById("question-text");
+    const questionCounter = document.getElementById("question-counter");
+    const optionsContainer = document.getElementById("options");
+    const scoreText = document.getElementById("score-text");
+    const answersList = document.getElementById("answers-list");
 
-    function startQuiz(){
-      startPage.classList.add('hidden');
-      quizPage.classList.remove('hidden');
-      currentIndex=0; score=0; selectedOption=null;
+    let currentIndex = 0;
+    let score = 0;
+    let selectedOption = null;
+
+    startBtn.onclick = () => {
+      startPage.classList.add("hidden");
+      quizPage.classList.remove("hidden");
       loadQuestion();
-    }
+    };
 
-    function loadQuestion(){
-      selectedOption=null;
-      questionCounter.textContent=`Question ${currentIndex+1} of ${quizData.length}`;
-      questionText.textContent=quizData[currentIndex].question;
-      optionsDiv.innerHTML='';
-      quizData[currentIndex].options.forEach(opt=>{
-        const btn=document.createElement('button');
-        btn.textContent=opt;
-        btn.className="bg-gray-700 hover:bg-gray-600 py-3 rounded-lg font-semibold transition-colors duration-200";
-        btn.onclick=()=>{
-          selectedOption=opt;
-          Array.from(optionsDiv.children).forEach(c=>c.classList.remove('bg-blue-600','hover:bg-blue-500'));
-          btn.classList.add('bg-blue-600','hover:bg-blue-500');
-        };
-        optionsDiv.appendChild(btn);
+    function loadQuestion() {
+      const q = quizData[currentIndex];
+      questionCounter.textContent = `Question ${currentIndex + 1} of ${quizData.length}`;
+      questionText.textContent = q.question;
+      optionsContainer.innerHTML = "";
+      q.options.forEach(opt => {
+        const btn = document.createElement("button");
+        btn.textContent = opt;
+        btn.className = `py-3 px-4 rounded-lg font-semibold transition-colors duration-200 w-full ${
+          selectedOption === opt ? "bg-[#00f5a0] text-black" : "bg-gray-700 hover:bg-gray-600"
+        }`;
+        btn.onclick = () => selectOption(btn, opt);
+        optionsContainer.appendChild(btn);
       });
     }
 
-    function nextQuestion(){
-      if(!selectedOption) return;
-      if(selectedOption===quizData[currentIndex].answer) score++;
+    function selectOption(btn, opt) {
+      selectedOption = opt;
+      Array.from(optionsContainer.children).forEach(b => b.classList.remove("bg-[#00f5a0]", "text-black"));
+      btn.classList.add("bg-[#00f5a0]", "text-black");
+    }
+
+    nextBtn.onclick = () => {
+      if (!selectedOption) return;
+      if (selectedOption === quizData[currentIndex].answer) score++;
       currentIndex++;
-      if(currentIndex<quizData.length) loadQuestion();
-      else showScorePage();
+      selectedOption = null;
+      if (currentIndex < quizData.length) {
+        loadQuestion();
+      } else {
+        showScore();
+      }
+    };
+
+    function showScore() {
+      quizPage.classList.add("hidden");
+      scorePage.classList.remove("hidden");
+      scoreText.textContent = `Your Score: ${score} / ${quizData.length}`;
     }
 
-    function showScorePage(){
-      quizPage.classList.add('hidden');
-      scorePage.classList.remove('hidden');
-      scoreText.textContent=`Your Score: ${score} / ${quizData.length}`;
-    }
+    restartBtn.onclick = restartQuiz;
+    restartBtn2.onclick = restartQuiz;
 
-    function showAllAnswers(){
-      scorePage.classList.add('hidden');
-      answersPage.classList.remove('hidden');
-      allAnswersDiv.innerHTML='';
-      quizData.forEach((q,i)=>{
-        const div=document.createElement('div');
-        div.className="p-4 bg-gray-700 rounded-lg";
-        div.innerHTML=`<p class="font-semibold">Q${i+1}: ${q.question}</p>
-        <p class="mt-1 text-green-400">Answer: ${q.answer}</p>`;
-        allAnswersDiv.appendChild(div);
-      });
-    }
+    showAnswersBtn.onclick = () => {
+      scorePage.classList.add("hidden");
+      answersPage.classList.remove("hidden");
+      answersList.innerHTML = quizData.map((q, i) => `
+        <p><strong>Q${i + 1}:</strong> ${q.question}<br>
+        <span class="text-[#00f5a0]">Answer:</span> ${q.answer}</p>
+      `).join("");
+    };
 
-    function restartQuiz(){
-      startPage.classList.remove('hidden');
-      quizPage.classList.add('hidden');
-      scorePage.classList.add('hidden');
-      answersPage.classList.add('hidden');
-      currentIndex=0; score=0; selectedOption=null;
+    function restartQuiz() {
+      score = 0;
+      currentIndex = 0;
+      selectedOption = null;
+      answersPage.classList.add("hidden");
+      scorePage.classList.add("hidden");
+      startPage.classList.remove("hidden");
     }
   </script>
 </body>
