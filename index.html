@@ -17,7 +17,7 @@
         Test your knowledge about Gensyn and the RL Swarm nodes!<br>
         Complete the quiz and discover your Pioneer score.
       </p>
-      <button onclick="startQuiz()" class="bg-indigo-600 hover:bg-indigo-500 py-3 px-6 rounded-xl font-bold transition-colors duration-200">
+      <button id="start-btn" class="bg-indigo-600 hover:bg-indigo-500 py-3 px-6 rounded-xl font-bold transition-colors duration-200">
         Start Quiz 🚀
       </button>
     </div>
@@ -27,7 +27,7 @@
       <h2 id="question-counter" class="text-2xl font-bold mb-6"></h2>
       <p id="question-text" class="mb-6 text-lg"></p>
       <div id="options" class="grid gap-4"></div>
-      <button onclick="nextQuestion()" class="mt-6 bg-indigo-600 hover:bg-indigo-500 py-3 px-6 rounded-xl font-bold transition-colors duration-200">
+      <button id="next-btn" class="mt-6 bg-indigo-600 hover:bg-indigo-500 py-3 px-6 rounded-xl font-bold transition-colors duration-200">
         Next
       </button>
     </div>
@@ -37,16 +37,15 @@
       <h2 class="text-3xl font-bold mb-4">Quiz Completed!</h2>
       <p id="score-text" class="text-xl mb-6"></p>
       <div class="flex flex-col gap-4 items-center">
-        <button onclick="restartQuiz()" class="bg-indigo-600 hover:bg-indigo-500 py-3 px-6 rounded-xl font-bold transition-colors duration-200">
+        <button id="restart-btn" class="bg-indigo-600 hover:bg-indigo-500 py-3 px-6 rounded-xl font-bold transition-colors duration-200">
           Restart Quiz
         </button>
-        <button onclick="showAllAnswers()" class="bg-yellow-600 hover:bg-yellow-500 py-3 px-6 rounded-xl font-bold transition-colors duration-200">
+        <button id="show-answers-btn" class="bg-yellow-600 hover:bg-yellow-500 py-3 px-6 rounded-xl font-bold transition-colors duration-200">
           Show All Answers
         </button>
         <a href="https://www.gensyn.ai/" target="_blank" class="bg-green-600 hover:bg-green-500 py-3 px-6 rounded-xl font-bold transition-colors duration-200">
           Join Gensyn Pioneer Program
         </a>
-        <!-- New Node Guide Button -->
         <a href="https://github.com/gensyn-ai/rl-swarm" target="_blank" class="bg-purple-600 hover:bg-purple-500 py-3 px-6 rounded-xl font-bold transition-colors duration-200">
           Run Your Gensyn Node
         </a>
@@ -58,13 +57,12 @@
       <h2 class="text-3xl font-bold mb-6 text-center">All Answers</h2>
       <div id="all-answers" class="space-y-4"></div>
       <div class="flex flex-col gap-4 items-center mt-6">
-        <button onclick="restartQuiz()" class="bg-indigo-600 hover:bg-indigo-500 py-3 px-6 rounded-xl font-bold transition-colors duration-200">
+        <button id="restart-btn2" class="bg-indigo-600 hover:bg-indigo-500 py-3 px-6 rounded-xl font-bold transition-colors duration-200">
           Restart Quiz
         </button>
         <a href="https://www.gensyn.ai/" target="_blank" class="bg-green-600 hover:bg-green-500 py-3 px-6 rounded-xl font-bold transition-colors duration-200">
           Join Gensyn Pioneer Program
         </a>
-        <!-- New Node Guide Button -->
         <a href="https://github.com/gensyn-ai/rl-swarm" target="_blank" class="bg-purple-600 hover:bg-purple-500 py-3 px-6 rounded-xl font-bold transition-colors duration-200">
           Run Your Gensyn Node
         </a>
@@ -106,6 +104,18 @@
     const scoreText = document.getElementById('score-text');
     const allAnswersDiv = document.getElementById('all-answers');
 
+    const startBtn = document.getElementById('start-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const restartBtn = document.getElementById('restart-btn');
+    const restartBtn2 = document.getElementById('restart-btn2');
+    const showAnswersBtn = document.getElementById('show-answers-btn');
+
+    startBtn.addEventListener('click', startQuiz);
+    nextBtn.addEventListener('click', nextQuestion);
+    restartBtn.addEventListener('click', restartQuiz);
+    restartBtn2.addEventListener('click', restartQuiz);
+    showAnswersBtn.addEventListener('click', showAllAnswers);
+
     function startQuiz() {
       startPage.classList.add('hidden');
       quizPage.classList.remove('hidden');
@@ -127,4 +137,44 @@
         btn.onclick = () => {
           selectedOption = option;
           Array.from(optionsDiv.children).forEach(child => child.classList.remove('bg-blue-600','hover:bg-blue-500'));
-          btn.classList.add('bg-blue-600','hover:bg-blue-500
+          btn.classList.add('bg-blue-600','hover:bg-blue-500');
+        };
+        optionsDiv.appendChild(btn);
+      });
+    }
+
+    function nextQuestion() {
+      if (!selectedOption) return;
+      if (selectedOption === quizData[currentIndex].answer) score++;
+      currentIndex++;
+      if (currentIndex < quizData.length) {
+        loadQuestion();
+      } else {
+        showScorePage();
+      }
+    }
+
+    function showScorePage() {
+      quizPage.classList.add('hidden');
+      scorePage.classList.remove('hidden');
+      scoreText.textContent = `Your Score: ${score} / ${quizData.length}`;
+    }
+
+    function showAllAnswers() {
+      scorePage.classList.add('hidden');
+      answersPage.classList.remove('hidden');
+      allAnswersDiv.innerHTML = '';
+      quizData.forEach((q, idx) => {
+        const div = document.createElement('div');
+        div.className = "p-4 bg-gray-700 rounded-lg";
+        div.innerHTML = `<p class="font-semibold">Q${idx+1}: ${q.question}</p>
+                         <p class="mt-1 text-green-400">Answer: ${q.answer}</p>`;
+        allAnswersDiv.appendChild(div);
+      });
+    }
+
+    function restartQuiz() {
+      startPage.classList.remove('hidden');
+      quizPage.classList.add('hidden');
+      scorePage.classList.add('hidden');
+      answersPage.classList.add
