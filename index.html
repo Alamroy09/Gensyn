@@ -1,174 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gensyn Ai Quiz</title>
-<meta name="description" content="Challenge yourself with the Gensyn Quiz! Learn about RL Swarm nodes, blockchain AI compute, and test your knowledge to become a Gensyn Pioneer.">
-<script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gensyn Ai Quiz</title>
+  <meta name="description" content="Challenge yourself with the Gensyn Quiz! Learn about RL Swarm nodes, blockchain AI compute, and test your knowledge to become a Gensyn Pioneer.">
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gradient-to-br from-blue-900 via-indigo-900 to-gray-900 flex items-center justify-center min-h-screen p-4 text-white">
+<body class="bg-gray-900 min-h-screen flex items-center justify-center p-4 text-white">
+  <div class="bg-gray-800 rounded-2xl shadow-xl max-w-xl w-full p-8" id="quiz-container">
 
-<div class="bg-gradient-to-br from-gray-800/80 via-gray-900/80 to-black/80 backdrop-blur-lg rounded-3xl shadow-2xl max-w-3xl w-full p-10 flex flex-col items-center space-y-6">
-
-  <!-- Start Page -->
-  <div id="start-page" class="text-center flex flex-col items-center justify-center min-h-[500px] space-y-6">
-    <h1 class="text-5xl sm:text-6xl font-extrabold text-white tracking-tight">💎 Gensyn Ai Quiz</h1>
-    <p class="text-white text-lg sm:text-xl max-w-2xl mx-auto">
-      Challenge yourself with the Gensyn Quiz! Learn about RL Swarm nodes, blockchain AI compute, and test your knowledge to become a Gensyn Pioneer.
-    </p>
-    <button id="start-btn" class="bg-blue-600 text-white font-bold py-4 px-12 rounded-3xl text-xl shadow-lg hover:scale-105 transform transition duration-300 hover:bg-blue-500">
-      Start Quiz 🚀
-    </button>
-  </div>
-
-  <!-- Quiz Page -->
-  <div id="quiz-page" class="hidden w-full">
-    <h2 id="question-counter" class="text-2xl font-bold mb-6 text-center"></h2>
-    <p id="question-text" class="mb-6 text-lg text-center sm:text-left"></p>
-    <div id="options" class="grid gap-4 sm:grid-cols-1 md:grid-cols-1"></div>
-    <div class="flex justify-center mt-6">
-      <button id="next-btn" class="bg-blue-600 hover:bg-blue-500 py-3 px-6 rounded-xl font-bold shadow-lg transition duration-300">
-        Next
+    <!-- Start Page -->
+    <div id="start-page" class="text-center">
+      <h1 class="text-3xl font-bold mb-4">💎 Gensyn Ai Quiz</h1>
+      <p class="mb-6 text-lg">
+        Challenge yourself with the Gensyn Quiz! Learn about RL Swarm nodes, blockchain AI compute, and test your knowledge to become a Gensyn Pioneer.
+      </p>
+      <button id="start-btn" class="bg-indigo-600 hover:bg-indigo-500 py-3 px-6 rounded-xl font-bold transition-colors duration-200">
+        Start Quiz 🚀
       </button>
     </div>
-  </div>
 
-  <!-- Score Page -->
-  <div id="score-page" class="hidden text-center">
-    <h2 class="text-3xl font-bold mb-4">Quiz Completed!</h2>
-    <p id="score-text" class="text-xl mb-6"></p>
-    <div class="flex flex-col gap-4 items-center">
-      <button id="restart-btn" class="bg-blue-600 hover:bg-blue-500 py-3 px-6 rounded-xl font-bold shadow-lg transition duration-300">
-        Restart Quiz
-      </button>
-      <button id="show-answers-btn" class="bg-yellow-600 hover:bg-yellow-500 py-3 px-6 rounded-xl font-bold shadow-lg transition duration-300">
-        Show All Answers
-      </button>
-      <a href="https://www.gensyn.ai/" target="_blank" class="bg-green-600 hover:bg-green-500 py-3 px-6 rounded-xl font-bold shadow-lg transition duration-300">
-        Learn More About Gensyn
-      </a>
-      <a href="https://github.com/gensyn-ai/rl-swarm" target="_blank" class="bg-purple-600 hover:bg-purple-500 py-3 px-6 rounded-xl font-bold shadow-lg transition duration-300">
-        Run Your Gensyn Node
-      </a>
+    <!-- Quiz Page -->
+    <div id="quiz-page" class="hidden">
+      <h2 id="question-counter" class="text-2xl font-bold mb-6"></h2>
+      <p id="question-text" class="mb-6 text-lg"></p>
+      <div id="options" class="grid gap-4"></div>
+
+      <!-- Next button centered -->
+      <div class="flex justify-center mt-6">
+        <button id="next-btn" class="bg-indigo-600 hover:bg-indigo-500 py-3 px-6 rounded-xl font-bold transition-colors duration-200">
+          Next
+        </button>
+      </div>
     </div>
-  </div>
 
-  <!-- All Answers Page -->
-  <div id="answers-page" class="hidden">
-    <h2 class="text-3xl font-bold mb-6 text-center">All Answers</h2>
-    <div id="all-answers" class="space-y-4"></div>
-    <div class="flex flex-col gap-4 items-center mt-6">
-      <button id="restart-btn2" class="bg-blue-600 hover:bg-blue-500 py-3 px-6 rounded-xl font-bold shadow-lg transition duration-300">
-        Restart Quiz
-      </button>
-      <a href="https://www.gensyn.ai/" target="_blank" class="bg-green-600 hover:bg-green-500 py-3 px-6 rounded-xl font-bold shadow-lg transition duration-300">
-        Learn More About Gensyn
-      </a>
-      <a href="https://github.com/gensyn-ai/rl-swarm" target="_blank" class="bg-purple-600 hover:bg-purple-500 py-3 px-6 rounded-xl font-bold shadow-lg transition duration-300">
-        Run Your Gensyn Node
-      </a>
+    <!-- Score Page -->
+    <div id="score-page" class="hidden text-center">
+      <h2 class="text-3xl font-bold mb-4">Quiz Completed!</h2>
+      <p id="score-text" class="text-xl mb-6"></p>
+      <div class="flex flex-col gap-4 items-center">
+        <button id="restart-btn" class="bg-indigo-600 hover:bg-indigo-500 py-3 px-6 rounded-xl font-bold transition-colors duration-200">
+          Restart Quiz
+        </button>
+        <button id="show-answers-btn" class="bg-yellow-600 hover:bg-yellow-500 py-3 px-6 rounded-xl font-bold transition-colors duration-200">
+          Show All Answers
+        </button>
+        <a href="https://www.gensyn.ai/" target="_blank" class="bg-green-600 hover:bg-green-500 py-3 px-6 rounded-xl font-bold transition-colors duration-200">
+          Join Gensyn Pioneer Program
+        </a>
+        <a href="https://github.com/gensyn-ai/rl-swarm" target="_blank" class="bg-purple-600 hover:bg-purple-500 py-3 px-6 rounded-xl font-bold transition-colors duration-200">
+          Run Your Gensyn Node
+        </a>
+      </div>
     </div>
+
+    <!-- All Answers Page -->
+    <div id="answers-page" class="hidden">
+      <h2 class="text-3xl font-bold mb-6 text-center">All Answers</h2>
+      <div id="all-answers" class="space-y-4"></div>
+      <div class="flex flex-col gap-4 items-center mt-6">
+        <button id="restart-btn2" class="bg-indigo-600 hover:bg-indigo-500 py-3 px-6 rounded-xl font-bold transition-colors duration-200">
+          Restart Quiz
+        </button>
+        <a href="https://www.gensyn.ai/" target="_blank" class="bg-green-600 hover:bg-green-500 py-3 px-6 rounded-xl font-bold transition-colors duration-200">
+          Join Gensyn Pioneer Program
+        </a>
+        <a href="https://github.com/gensyn-ai/rl-swarm" target="_blank" class="bg-purple-600 hover:bg-purple-500 py-3 px-6 rounded-xl font-bold transition-colors duration-200">
+          Run Your Gensyn Node
+        </a>
+      </div>
+    </div>
+
   </div>
 
-</div>
+  <script>
+    const quizData = [
+      { question: "What is Gensyn?", options: ["Cloud service", "Blockchain-based AI compute protocol", "AI lab", "Data analytics tool"], answer: "Blockchain-based AI compute protocol" },
+      { question: "What is RL Swarm in Gensyn?", options: ["Multiplayer game", "Distributed learning framework", "Social media", "Database system"], answer: "Distributed learning framework" },
+      { question: "Main goal of Gensyn?", options: ["Social network", "Affordable AI training compute using idle hardware", "Cloud AI research", "Sell AI licenses"], answer: "Affordable AI training compute using idle hardware" },
+      { question: "Funding raised?", options: ["$10M", "$25.5M", "$50.6M", "$100M"], answer: "$50.6M" },
+      { question: "Number of roles in Pioneer Program?", options: ["1", "2", "3", "4"], answer: "3" },
+      { question: "Which is NOT a Pioneer Program role?", options: ["Rover","Navigator","Pioneer","Developer"], answer: "Developer" },
+      { question: "Rover role represents?", options: ["Builder","Consistent contributor","Leader","Technical reviewer"], answer: "Consistent contributor" },
+      { question: "Navigator role represents?", options: ["Creates content","Moderates Discord","Passive observer","Runs servers"], answer: "Creates content" },
+      { question: "Pioneer role represents?", options: ["Maintains servers","Active contributor","Spreads culture","Tests AI models"], answer: "Spreads culture" },
+      { question: "Hardware recommended for Gensyn node?", options: ["CPU","GPU","Mobile","Laptop"], answer: "GPU" },
+      { question: "OS recommended for Gensyn nodes?", options: ["Windows","Linux","macOS","Android"], answer: "Linux" },
+      { question: "Command to start RL Swarm node?", options: ["./run_rl_swarm.sh","python3 run.py","npm start","docker-compose up"], answer: "./run_rl_swarm.sh" },
+      { question: "Network protocol for RL Swarm nodes?", options: ["TCP/IP","HTTP/HTTPS","Peer-to-Peer","FTP"], answer: "Peer-to-Peer" },
+      { question: "AI model used in RL Swarm?", options: ["GPT-3","BERT","Qwen2.5-0.5B-Instruct","ResNet"], answer: "Qwen2.5-0.5B-Instruct" },
+      { question: "Contribution form submission frequency?", options: ["Weekly","Every 2 weeks","Monthly","Daily"], answer: "Every 2 weeks" },
+    ];
 
-<script>
-const quizData = [
-  { question: "What is Gensyn?", options: ["Cloud service","Blockchain-based AI compute protocol","AI lab","Data analytics tool"], answer: "Blockchain-based AI compute protocol" },
-  { question: "What is RL Swarm in Gensyn?", options: ["Multiplayer game","Distributed learning framework","Social media","Database system"], answer: "Distributed learning framework" },
-  { question: "Main goal of Gensyn?", options: ["Social network","Affordable AI training compute using idle hardware","Cloud AI research","Sell AI licenses"], answer: "Affordable AI training compute using idle hardware" },
-  { question: "Funding raised?", options: ["$10M","$25.5M","$50.6M","$100M"], answer: "$50.6M" },
-  { question: "Number of roles in Pioneer Program?", options: ["1","2","3","4"], answer: "3" },
-  { question: "Which is NOT a Pioneer Program role?", options: ["Rover","Navigator","Pioneer","Developer"], answer: "Developer" },
-  { question: "Rover role represents?", options: ["Builder","Consistent contributor","Leader","Technical reviewer"], answer: "Consistent contributor" },
-  { question: "Navigator role represents?", options: ["Creates content","Moderates Discord","Passive observer","Runs servers"], answer: "Creates content" },
-  { question: "Pioneer role represents?", options: ["Maintains servers","Active contributor","Spreads culture","Tests AI models"], answer: "Spreads culture" },
-  { question: "Hardware recommended for Gensyn node?", options: ["CPU","GPU","Mobile","Laptop"], answer: "GPU" },
-  { question: "OS recommended for Gensyn nodes?", options: ["Windows","Linux","macOS","Android"], answer: "Linux" },
-  { question: "Command to start RL Swarm node?", options: ["./run_rl_swarm.sh","python3 run.py","npm start","docker-compose up"], answer: "./run_rl_swarm.sh" },
-  { question: "Network protocol for RL Swarm nodes?", options: ["TCP/IP","HTTP/HTTPS","Peer-to-Peer","FTP"], answer: "Peer-to-Peer" },
-  { question: "AI model used in RL Swarm?", options: ["GPT-3","BERT","Qwen2.5-0.5B-Instruct","ResNet"], answer: "Qwen2.5-0.5B-Instruct" },
-  { question: "Contribution form submission frequency?", options: ["Weekly","Every 2 weeks","Monthly","Daily"], answer: "Every 2 weeks" }
-];
+    let currentIndex=0, score=0, selectedOption=null;
 
-let currentIndex=0, score=0, selectedOption=null;
+    const startPage = document.getElementById('start-page');
+    const quizPage = document.getElementById('quiz-page');
+    const scorePage = document.getElementById('score-page');
+    const answersPage = document.getElementById('answers-page');
+    const questionCounter = document.getElementById('question-counter');
+    const questionText = document.getElementById('question-text');
+    const optionsDiv = document.getElementById('options');
+    const scoreText = document.getElementById('score-text');
+    const allAnswersDiv = document.getElementById('all-answers');
 
-const startPage=document.getElementById('start-page');
-const quizPage=document.getElementById('quiz-page');
-const scorePage=document.getElementById('score-page');
-const answersPage=document.getElementById('answers-page');
-const questionCounter=document.getElementById('question-counter');
-const questionText=document.getElementById('question-text');
-const optionsDiv=document.getElementById('options');
-const scoreText=document.getElementById('score-text');
-const allAnswersDiv=document.getElementById('all-answers');
+    document.getElementById('start-btn').addEventListener('click', startQuiz);
+    document.getElementById('next-btn').addEventListener('click', nextQuestion);
+    document.getElementById('restart-btn').addEventListener('click', restartQuiz);
+    document.getElementById('restart-btn2').addEventListener('click', restartQuiz);
+    document.getElementById('show-answers-btn').addEventListener('click', showAllAnswers);
 
-document.getElementById('start-btn').addEventListener('click',startQuiz);
-document.getElementById('next-btn').addEventListener('click',nextQuestion);
-document.getElementById('restart-btn').addEventListener('click',restartQuiz);
-document.getElementById('restart-btn2').addEventListener('click',restartQuiz);
-document.getElementById('show-answers-btn').addEventListener('click',showAllAnswers);
+    function startQuiz(){
+      startPage.classList.add('hidden');
+      quizPage.classList.remove('hidden');
+      currentIndex=0; score=0; selectedOption=null;
+      loadQuestion();
+    }
 
-function startQuiz(){
-  startPage.classList.add('hidden');
-  quizPage.classList.remove('hidden');
-  currentIndex=0; score=0; selectedOption=null;
-  loadQuestion();
-}
+    function loadQuestion(){
+      selectedOption=null;
+      questionCounter.textContent=`Question ${currentIndex+1} of ${quizData.length}`;
+      questionText.textContent=quizData[currentIndex].question;
+      optionsDiv.innerHTML='';
+      quizData[currentIndex].options.forEach(opt=>{
+        const btn=document.createElement('button');
+        btn.textContent=opt;
+        btn.className="bg-gray-700 hover:bg-gray-600 py-3 rounded-lg font-semibold transition-colors duration-200";
+        btn.onclick=()=>{
+          selectedOption=opt;
+          Array.from(optionsDiv.children).forEach(c=>c.classList.remove('bg-blue-600','hover:bg-blue-500'));
+          btn.classList.add('bg-blue-600','hover:bg-blue-500');
+        };
+        optionsDiv.appendChild(btn);
+      });
+    }
 
-function loadQuestion(){
-  selectedOption=null;
-  questionCounter.textContent=`Question ${currentIndex+1} of ${quizData.length}`;
-  questionText.textContent=quizData[currentIndex].question;
-  optionsDiv.innerHTML='';
-  quizData[currentIndex].options.forEach(opt=>{
-    const btn=document.createElement('button');
-    btn.textContent=opt;
-    btn.className="bg-gray-700 hover:bg-gray-600 py-3 rounded-lg font-semibold transition-colors duration-200";
-    btn.onclick=()=>{
-      selectedOption=opt;
-      Array.from(optionsDiv.children).forEach(c=>c.classList.remove('bg-blue-600','hover:bg-blue-500'));
-      btn.classList.add('bg-blue-600','hover:bg-blue-500');
-    };
-    optionsDiv.appendChild(btn);
-  });
-}
+    function nextQuestion(){
+      if(!selectedOption) return;
+      if(selectedOption===quizData[currentIndex].answer) score++;
+      currentIndex++;
+      if(currentIndex<quizData.length) loadQuestion();
+      else showScorePage();
+    }
 
-function nextQuestion(){
-  if(!selectedOption) return;
-  if(selectedOption===quizData[currentIndex].answer) score++;
-  currentIndex++;
-  if(currentIndex<quizData.length) loadQuestion();
-  else showScorePage();
-}
+    function showScorePage(){
+      quizPage.classList.add('hidden');
+      scorePage.classList.remove('hidden');
+      scoreText.textContent=`Your Score: ${score} / ${quizData.length}`;
+    }
 
-function showScorePage(){
-  quizPage.classList.add('hidden');
-  scorePage.classList.remove('hidden');
-  scoreText.textContent=`Your Score: ${score} / ${quizData.length}`;
-}
+    function showAllAnswers(){
+      scorePage.classList.add('hidden');
+      answersPage.classList.remove('hidden');
+      allAnswersDiv.innerHTML='';
+      quizData.forEach((q,i)=>{
+        const div=document.createElement('div');
+        div.className="p-4 bg-gray-700 rounded-lg";
+        div.innerHTML=`<p class="font-semibold">Q${i+1}: ${q.question}</p>
+        <p class="mt-1 text-green-400">Answer: ${q.answer}</p>`;
+        allAnswersDiv.appendChild(div);
+      });
+    }
 
-function showAllAnswers(){
-  scorePage.classList.add('hidden');
-  answersPage.classList.remove('hidden');
-  allAnswersDiv.innerHTML='';
-  quizData.forEach((q,i)=>{
-    const div=document.createElement('div');
-    div.className="p-4 bg-gray-700 rounded-lg";
-    div.innerHTML=`<p class="font-semibold">Q${i+1}: ${q.question}</p>
-    <p class="mt-1 text-green-400">Answer: ${q.answer}</p>`;
-    allAnswersDiv.appendChild(div);
-  });
-}
-
-function restartQuiz(){
-  startPage.classList.remove('hidden');
-  quizPage.classList.add('hidden');
-  scorePage.classList.add('hidden');
-  answersPage.classList.add('hidden');
-  currentIndex=0; score=0; selectedOption=null;
-}
-</script>
+    function restartQuiz(){
+      startPage.classList.remove('hidden');
+      quizPage.classList.add('hidden');
+      scorePage.classList.add('hidden');
+      answersPage.classList.add('hidden');
+      currentIndex=0; score=0; selectedOption=null;
+    }
+  </script>
 </body>
 </html>
