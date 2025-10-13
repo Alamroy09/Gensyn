@@ -108,4 +108,86 @@
       { question: "Number of roles in Pioneer Program?", options: ["1", "2", "3", "4"], answer: "3" },
       { question: "Which is NOT a Pioneer Program role?", options: ["Rover","Navigator","Pioneer","Developer"], answer: "Developer" },
       { question: "Rover role represents?", options: ["Builder","Consistent contributor","Leader","Technical reviewer"], answer: "Consistent contributor" },
-      { question: "Navigator role represents?", options: ["Creates content","Moderates Discord","Passive observer","Runs servers"], answer: "Creates content
+      { question: "Navigator role represents?", options: ["Creates content","Moderates Discord","Passive observer","Runs servers"], answer: "Creates content" },
+      { question: "Pioneer role represents?", options: ["Maintains servers","Active contributor","Spreads culture","Tests AI models"], answer: "Spreads culture" },
+      { question: "Hardware recommended for Gensyn node?", options: ["CPU","GPU","Mobile","Laptop"], answer: "GPU" },
+      { question: "OS recommended for Gensyn nodes?", options: ["Windows","Linux","macOS","Android"], answer: "Linux" },
+      { question: "Command to start RL Swarm node?", options: ["./run_rl_swarm.sh","python3 run.py","npm start","docker-compose up"], answer: "./run_rl_swarm.sh" },
+      { question: "Network protocol for RL Swarm nodes?", options: ["TCP/IP","HTTP/HTTPS","Peer-to-Peer","FTP"], answer: "Peer-to-Peer" },
+      { question: "AI model used in RL Swarm?", options: ["GPT-3","BERT","Qwen2.5-0.5B-Instruct","ResNet"], answer: "Qwen2.5-0.5B-Instruct" },
+      { question: "Contribution form submission frequency?", options: ["Weekly","Every 2 weeks","Monthly","Daily"], answer: "Every 2 weeks" },
+    ];
+
+    let currentIndex = 0, score = 0, selectedOption = null;
+
+    const startPage = document.getElementById('start-page');
+    const quizPage = document.getElementById('quiz-page');
+    const scorePage = document.getElementById('score-page');
+    const answersPage = document.getElementById('answers-page');
+    const questionCounter = document.getElementById('question-counter');
+    const questionText = document.getElementById('question-text');
+    const optionsDiv = document.getElementById('options');
+    const scoreText = document.getElementById('score-text');
+    const allAnswersDiv = document.getElementById('all-answers');
+    const confettiContainer = document.getElementById('confetti-container');
+
+    document.getElementById('start-btn').addEventListener('click', startQuiz);
+    document.getElementById('next-btn').addEventListener('click', nextQuestion);
+    document.getElementById('restart-btn').addEventListener('click', restartQuiz);
+    document.getElementById('restart-btn2').addEventListener('click', restartQuiz);
+    document.getElementById('show-answers-btn').addEventListener('click', showAllAnswers);
+
+    function startQuiz() {
+      startPage.classList.add('hidden');
+      quizPage.classList.remove('hidden');
+      quizPage.classList.add('fade-in');
+      currentIndex = 0;
+      score = 0;
+      selectedOption = null;
+      loadQuestion();
+    }
+
+    function loadQuestion() {
+      selectedOption = null;
+      questionCounter.textContent = `Question ${currentIndex + 1} of ${quizData.length}`;
+      questionText.textContent = quizData[currentIndex].question;
+      optionsDiv.innerHTML = '';
+      quizData[currentIndex].options.forEach(opt => {
+        const btn = document.createElement('button');
+        btn.textContent = opt;
+        btn.className = "bg-gray-700 hover:bg-gray-600 py-3 rounded-lg font-semibold text-white transition-transform duration-200 hover:scale-105";
+        btn.onclick = () => {
+          selectedOption = opt;
+          Array.from(optionsDiv.children).forEach(c => c.classList.remove('bg-blue-600','hover:bg-blue-500','text-white'));
+          btn.classList.add('bg-blue-600','hover:bg-blue-500','text-white');
+        };
+        optionsDiv.appendChild(btn);
+      });
+    }
+
+    function nextQuestion() {
+      if(!selectedOption) return;
+      if(selectedOption === quizData[currentIndex].answer) score++;
+      currentIndex++;
+      if(currentIndex < quizData.length) loadQuestion();
+      else showScorePage();
+    }
+
+    function showScorePage() {
+      quizPage.classList.add('hidden');
+      scorePage.classList.remove('hidden');
+      scorePage.classList.add('fade-in');
+      scoreText.textContent = `Your Score: ${score} / ${quizData.length}`;
+      if(score >= quizData.length * 0.7) launchConfetti();
+    }
+
+    function showAllAnswers() {
+      scorePage.classList.add('hidden');
+      answersPage.classList.remove('hidden');
+      answersPage.classList.add('fade-in');
+      allAnswersDiv.innerHTML = '';
+      quizData.forEach((q,i) => {
+        const div = document.createElement('div');
+        div.className = "p-4 bg-gray-700 rounded-lg text-white";
+        div.innerHTML = `<p class="font-semibold">Q${i+1}: ${q.question}</p>
+                         <p class="mt-1 text-green-400">Answer: ${q.answer}</
