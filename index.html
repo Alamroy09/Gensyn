@@ -3,80 +3,103 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gensyn AI Quiz</title>
+  <title>Gensyn Ai Quiz</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    /* Animated gradient background for Start Page */
-    @keyframes gradientBG {
-      0% {background-position: 0% 50%;}
-      50% {background-position: 100% 50%;}
-      100% {background-position: 0% 50%;}
+    body {
+      background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Inter', sans-serif;
+      color: #222;
     }
-    .animated-gradient {
-      background: linear-gradient(270deg, #6b21a8, #d946ef, #f43f5e);
-      background-size: 600% 600%;
-      animation: gradientBG 10s ease infinite;
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     }
+
+    .title {
+      background: linear-gradient(to right, #9333ea, #ec4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 20px;
+      width: 100%;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
     .option-btn {
       transition: transform 0.2s, background-color 0.2s, color 0.2s;
     }
+
     .option-btn:hover {
       transform: scale(1.05);
     }
   </style>
 </head>
-<body class="bg-gray-900 min-h-screen flex items-center justify-center p-4 text-white font-sans">
+<body>
 
-  <div class="max-w-2xl w-full p-6">
+  <div class="max-w-2xl w-full p-6 relative">
 
     <!-- Start Page -->
-    <div id="start-page" class="text-center p-8 rounded-3xl shadow-2xl animated-gradient">
-      <h1 class="text-5xl font-extrabold mb-4 drop-shadow-lg">💎 Gensyn AI Quiz</h1>
-      <p class="mb-6 text-lg md:text-xl drop-shadow-md">
-        Challenge yourself! Learn about RL-Swarm nodes, decentralized AI compute, and become a Gensyn Pioneer!
+    <div id="start-page" class="glass-card p-10 rounded-3xl text-center shadow-xl">
+      <h1 class="text-5xl font-extrabold mb-4 title">Gensyn Ai Quiz</h1>
+      <p class="text-lg mb-8 text-gray-700">
+        Challenge yourself with the Gensyn Quiz! Learn about RL-Swarm nodes, blockchain AI compute, 
+        and test your knowledge to become a Gensyn Pioneer.
       </p>
-      <button id="start-btn" class="bg-yellow-400 hover:bg-yellow-300 text-gray-900 font-bold py-4 px-12 rounded-full text-lg shadow-xl transition-transform duration-200 hover:scale-110">
+      <button id="start-btn" class="bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold py-4 px-10 rounded-full shadow-md hover:scale-105 transition-transform">
         Start Quiz 🚀
       </button>
     </div>
 
     <!-- Quiz Page -->
-    <div id="quiz-page" class="hidden bg-white/10 backdrop-blur-md p-8 rounded-2xl shadow-xl mt-6 text-white">
+    <div id="quiz-page" class="hidden glass-card p-8 rounded-3xl shadow-xl mt-6 text-gray-800">
       <h2 id="question-counter" class="text-2xl font-bold mb-6"></h2>
       <p id="question-text" class="mb-6 text-lg"></p>
       <div id="options" class="grid gap-4"></div>
       <div class="flex justify-center mt-6">
-        <button id="next-btn" class="bg-indigo-500 hover:bg-indigo-600 py-3 px-6 rounded-xl font-bold text-white shadow-lg">Next</button>
+        <button id="next-btn" class="bg-purple-500 hover:bg-purple-600 text-white py-3 px-6 rounded-full font-semibold">Next</button>
       </div>
     </div>
 
     <!-- Score Page -->
-    <div id="score-page" class="hidden text-center bg-white/10 backdrop-blur-md p-8 rounded-2xl shadow-xl mt-6 text-white">
+    <div id="score-page" class="hidden text-center glass-card p-8 rounded-3xl shadow-xl mt-6 text-gray-800">
       <h2 class="text-3xl font-bold mb-4">Quiz Completed!</h2>
       <p id="score-text" class="text-xl mb-6"></p>
       <div class="flex flex-col gap-4 items-center">
-        <button id="restart-btn" class="bg-indigo-500 hover:bg-indigo-600 py-3 px-6 rounded-xl font-bold text-white shadow-lg">Restart Quiz</button>
-        <button id="show-answers-btn" class="bg-yellow-500 hover:bg-yellow-600 py-3 px-6 rounded-xl font-bold text-white shadow-lg">Show All Answers</button>
-        <a href="https://www.gensyn.ai/" target="_blank" class="bg-green-600 hover:bg-green-500 py-3 px-6 rounded-xl font-bold text-white shadow-lg">Join Gensyn Pioneer Program</a>
-        <a href="https://github.com/gensyn-ai/rl-swarm" target="_blank" class="bg-purple-600 hover:bg-purple-500 py-3 px-6 rounded-xl font-bold text-white shadow-lg">Run Your Gensyn Node</a>
+        <button id="restart-btn" class="bg-purple-500 hover:bg-purple-600 py-3 px-6 rounded-full text-white font-semibold">Restart Quiz</button>
+        <button id="show-answers-btn" class="bg-yellow-500 hover:bg-yellow-600 py-3 px-6 rounded-full text-white font-semibold">Show All Answers</button>
+        <a href="https://www.gensyn.ai/" target="_blank" class="bg-green-600 hover:bg-green-500 py-3 px-6 rounded-full text-white font-semibold">Join Gensyn Pioneer Program</a>
       </div>
     </div>
 
     <!-- All Answers Page -->
-    <div id="answers-page" class="hidden bg-white/10 backdrop-blur-md p-8 rounded-2xl shadow-xl mt-6 text-white">
+    <div id="answers-page" class="hidden glass-card p-8 rounded-3xl shadow-xl mt-6 text-gray-800">
       <h2 class="text-3xl font-bold mb-6 text-center">All Answers</h2>
       <div id="all-answers" class="space-y-4"></div>
       <div class="flex flex-col gap-4 items-center mt-6">
-        <button id="restart-btn2" class="bg-indigo-500 hover:bg-indigo-600 py-3 px-6 rounded-xl font-bold text-white shadow-lg">Restart Quiz</button>
-        <a href="https://www.gensyn.ai/" target="_blank" class="bg-green-600 hover:bg-green-500 py-3 px-6 rounded-xl font-bold text-white shadow-lg">Join Gensyn Pioneer Program</a>
-        <a href="https://github.com/gensyn-ai/rl-swarm" target="_blank" class="bg-purple-600 hover:bg-purple-500 py-3 px-6 rounded-xl font-bold text-white shadow-lg">Run Your Gensyn Node</a>
+        <button id="restart-btn2" class="bg-purple-500 hover:bg-purple-600 py-3 px-6 rounded-full text-white font-semibold">Restart Quiz</button>
       </div>
     </div>
 
   </div>
 
+  <!-- Footer Credit -->
+  <div class="footer">
+    Built by <strong>Rubel</strong> for <strong>Gensyn Community 💎</strong>
+  </div>
+
   <script>
-    // Quiz Data (same as original)
     const quizData = [
       { question: "What is Gensyn?", options: ["Cloud service", "Blockchain-based AI compute protocol", "AI lab", "Data analytics tool"], answer: "Blockchain-based AI compute protocol" },
       { question: "What is RL Swarm in Gensyn?", options: ["Multiplayer game", "Distributed learning framework", "Social media", "Database system"], answer: "Distributed learning framework" },
@@ -107,74 +130,68 @@
     const scoreText = document.getElementById('score-text');
     const allAnswersDiv = document.getElementById('all-answers');
 
-    // Start Quiz
     document.getElementById('start-btn').addEventListener('click', () => {
       startPage.classList.add('hidden');
       quizPage.classList.remove('hidden');
-      currentIndex = 0; score = 0; selectedOption = null;
+      currentIndex = 0; score = 0;
       loadQuestion();
     });
 
-    // Load Question
-    function loadQuestion(){
+    function loadQuestion() {
       selectedOption = null;
       const q = quizData[currentIndex];
-      questionCounter.textContent = `Question ${currentIndex+1} of ${quizData.length}`;
+      questionCounter.textContent = `Question ${currentIndex + 1} of ${quizData.length}`;
       questionText.textContent = q.question;
       optionsDiv.innerHTML = '';
       q.options.forEach(opt => {
         const btn = document.createElement('button');
         btn.textContent = opt;
-        btn.className = "option-btn bg-gray-700 hover:bg-gray-600 py-3 rounded-lg font-semibold text-white";
+        btn.className = "option-btn bg-gray-200 hover:bg-purple-100 py-3 rounded-lg font-semibold text-gray-800";
         btn.onclick = () => {
           selectedOption = opt;
-          Array.from(optionsDiv.children).forEach(c=>c.classList.remove('bg-blue-600','hover:bg-blue-500','text-white'));
-          btn.classList.add('bg-blue-600','hover:bg-blue-500','text-white');
+          Array.from(optionsDiv.children).forEach(c => c.classList.remove('bg-purple-500', 'text-white'));
+          btn.classList.add('bg-purple-500', 'text-white');
         };
         optionsDiv.appendChild(btn);
       });
     }
 
-    // Next Button
     document.getElementById('next-btn').addEventListener('click', () => {
-      if(!selectedOption) return;
-      if(selectedOption === quizData[currentIndex].answer) score++;
+      if (!selectedOption) return;
+      if (selectedOption === quizData[currentIndex].answer) score++;
       currentIndex++;
-      if(currentIndex < quizData.length) loadQuestion();
+      if (currentIndex < quizData.length) loadQuestion();
       else showScore();
     });
 
-    // Show Score
-    function showScore(){
+    function showScore() {
       quizPage.classList.add('hidden');
       scorePage.classList.remove('hidden');
       scoreText.textContent = `Your Score: ${score} / ${quizData.length}`;
     }
 
-    // Show All Answers
     document.getElementById('show-answers-btn').addEventListener('click', () => {
       scorePage.classList.add('hidden');
       answersPage.classList.remove('hidden');
       allAnswersDiv.innerHTML = '';
-      quizData.forEach((q,i)=>{
+      quizData.forEach((q, i) => {
         const div = document.createElement('div');
-        div.className = "p-4 bg-gray-700 rounded-lg";
-        div.innerHTML = `<p class="font-semibold">Q${i+1}: ${q.question}</p><p class="mt-1 text-green-400">Answer: ${q.answer}</p>`;
+        div.className = "p-4 bg-gray-100 rounded-lg";
+        div.innerHTML = `<p class='font-semibold'>Q${i + 1}: ${q.question}</p><p class='mt-1 text-green-600'>Answer: ${q.answer}</p>`;
         allAnswersDiv.appendChild(div);
       });
     });
 
-    // Restart Quiz
-    function restartQuiz(){
+    function restartQuiz() {
       startPage.classList.remove('hidden');
       quizPage.classList.add('hidden');
       scorePage.classList.add('hidden');
       answersPage.classList.add('hidden');
-      currentIndex = 0; score = 0; selectedOption = null;
+      currentIndex = 0; score = 0;
     }
+
     document.getElementById('restart-btn').addEventListener('click', restartQuiz);
     document.getElementById('restart-btn2').addEventListener('click', restartQuiz);
-
   </script>
 </body>
 </html>
